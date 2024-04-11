@@ -13,8 +13,6 @@ In addition to Vue 3, which is required by the course, and Bootstrap, with which
 - SASS
 - Spring + Kotlin (for developing the mock backend)
 
-Although Vue3 and Bootstrap are technologies I am familiar with, I will also try to learn and apply new technologies to me such as WASM and SASS.
-
 ## Notes
 **Please note:** Since this project uses several technologies I am not familiar with, and due to limited development time, there may be errors, design flaws, and non-standard implementations in the project. Therefore, **please be cautious when referring to this project's code**.
 

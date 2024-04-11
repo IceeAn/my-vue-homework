@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: SimilarBackendForWebFrameworkHomework
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:3373/webtest?createDatabaseIfNotExist=true
+    username: ${DB_USER}
+    password: ${DB_PWD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+logging:
+  level:
+    dev:
+      iceean: debug
+    sql: debug

@@ -2,7 +2,7 @@ spring:
   application:
     name: SimilarBackendForWebFrameworkHomework
   datasource:
-    url: jdbc:mysql://${DB_HOST}:3373/webtest?createDatabaseIfNotExist=true
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?${DB_PARAM}
     username: ${DB_USER}
     password: ${DB_PWD}
     driver-class-name: com.mysql.cj.jdbc.Driver

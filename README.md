@@ -66,7 +66,7 @@
 - `docker compose` 运行完成后，你应该可以在本地访问网页了。你可以运行以下命令测试：
 
   ```bash
-  (curl -Isf -m 3 localhost:8080 && curl -Isf -m 3 baidu.com) > /dev/null && echo "success" || echo "failed"
+  (curl -Isf -m 3 localhost:8080 && curl -Isf -m 3 localhost:8080/api/test-status) > /dev/null && echo "success" || echo "failed"
   ```
 
   输出 `success` 则说明 Web 项目已经正常运行。

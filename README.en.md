@@ -30,13 +30,13 @@ A lab booking system that allows teachers to flexibly schedule experimental lab 
 
 #### Frontend Requirements
 
-[x] *TODO*
-[ ] *TODO*
+- [x] *TODO*
+- [ ] *TODO*
 
 #### Simulated Backend Requirements
 
-[x] *TODO*
-[ ] *TODO*
+- [x] *TODO*
+- [ ] *TODO*
 
 
 

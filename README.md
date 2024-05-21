@@ -26,12 +26,12 @@
 
 一个允许教师灵活预约课程实验时间的实验室预约系统。该系统默认包含 4 个可预约的实验室，可在共 18 周的时间范围内预约。每间实验室每天支持上午 2 段（12/34 节）下午 2 段（56/78 节）共 4 次课。
 
-#### 前端需求
+### 前端需求
 
 - [x] *TODO*
 - [ ] *TODO*
 
-#### 模拟后端需求
+### 模拟后端需求
 
 - [ ] *TODO*
 - [x] *TODO*
@@ -41,11 +41,11 @@
 
 ## 部署
 
-#### 使用docker compose
+### 使用docker compose
 
 - 安装 [docker](https://www.docker.com)，包括 docker-compose。
 
-- clone 项目到本地。
+- clone 项目到本地，或手动下载本仓库至 `./LabBookingSystem`。
 
   ```bash
   git clone https://github.com/IceeAn/my-vue-homework.git ./LabBookingSystem
@@ -63,7 +63,7 @@
   docker compose --env-file docker-mysql.env up -d
   ```
 
-- `docker compose` 运行完成后，你应该可以在本地访问网页了。你可以运行以下命令测试：
+- `docker compose` 运行完成后，你应该可以在 `localhost:8080` 访问网页了。如果不方便立即访问网页，你还可以运行以下命令测试：
 
   ```bash
   (curl -Isf -m 3 localhost:8080 && curl -Isf -m 3 localhost:8080/api/test-status) > /dev/null && echo "success" || echo "failed"
@@ -71,10 +71,35 @@
 
   输出 `success` 则说明 Web 项目已经正常运行。
 
-#### 使用原生部署
+### 使用原生部署
 
-- *TODO*
+- 安装 Java 21，Node.js 20，Mysql 8 与 Rust
 
+- clone 项目到本地。
+
+  ```bash
+  git clone https://github.com/IceeAn/my-vue-homework.git ./LabBookingSystem
+  ```
+
+- 进入该文件夹。
+
+  ```bash
+  cd LabBookingSystem
+  ```
+
+- 在Shell中设置环境变量：`DB_HOST` `DB_PORT` `DB_NAME` `DB_PARAM` `DB_USER` `DB_PASSWORD`，或直接修改 `backend/src/resources/application.yaml`，填写自己的配置。
+
+- 编译、运行后端项目
+
+- 编译、运行前端项目
+
+- 现在，你应该可以在 `localhost:8080` 访问网页了。如果不方便立即访问网页，你还可以运行以下命令测试：
+
+  ```bash
+  (curl -Isf -m 3 localhost:8080 && curl -Isf -m 3 localhost:8080/api/test-status) > /dev/null && echo "success" || echo "failed"
+  ```
+
+  输出 `success` 则说明 Web 项目已经正常运行。
 
 
 ## 注意事项

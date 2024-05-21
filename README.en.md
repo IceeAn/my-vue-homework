@@ -28,12 +28,12 @@ In addition to Vue3, which is required by the course, and Bootstrap, which the a
 
 A lab booking system that allows teachers to flexibly schedule experimental lab sessions. By default, the system includes 4 bookable labs, available over a period of 18 weeks. Each lab supports 4 sessions per day in two slots each in the morning (12/34 periods) and afternoon (56/78 periods).
 
-#### Frontend Requirements
+### Frontend Requirements
 
 - [x] *TODO*
 - [ ] *TODO*
 
-#### Simulated Backend Requirements
+### Simulated Backend Requirements
 
 - [x] *TODO*
 - [ ] *TODO*
@@ -43,7 +43,7 @@ A lab booking system that allows teachers to flexibly schedule experimental lab 
 
 ## Deployment
 
-#### Using docker compose
+### Using docker compose
 
 - Install [docker](https://www.docker.com), including docker-compose.
 
@@ -73,7 +73,7 @@ A lab booking system that allows teachers to flexibly schedule experimental lab 
 
   If the output is `success`, the web project is running properly.
 
-#### Using native deployment
+### Using native deployment
 
 - *TODO*
 

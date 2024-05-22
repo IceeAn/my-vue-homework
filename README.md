@@ -64,10 +64,11 @@
   - [ ] 取消预约
 
 
-
 ## 部署
 
-### 使用docker compose
+### 使用
+
+### 使用docker compose从源码构建
 
 - 安装 [docker](https://www.docker.com)，包括 docker-compose。
 
@@ -83,7 +84,7 @@
   cd LabBookingSystem
   ```
 
-- 运行 `docker compose`。这可能需要较长时间，尤其在网络条件较差时。
+- 运行 `docker compose`。这可能需要较长时间，尤其在使用国内网络时。如有需要，你可以手动[修改 gradle 分发 URL](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper) 并[声明自定义存储库](https://docs.gradle.org/current/userguide/declaring_repositories.html#sec:declaring_custom_repository)。
 
   ```bash
   docker compose --env-file docker-mysql.env up -d
@@ -97,7 +98,7 @@
 
   输出 `success` 则说明 Web 项目已经正常运行。
 
-### 使用原生部署
+### 使用原生构建并部署
 
 - 安装 Java 21，Node.js 20，Mysql 8 与 Rust
 

@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import BookingMain from "@/components/BookingMain.vue";
+import BookingMain from "@/components/booking/BookingMain.vue";
 </script>
 
 <template>
-  <main>
-    <BookingMain />
-  </main>
+  <BookingMain/>
 </template>

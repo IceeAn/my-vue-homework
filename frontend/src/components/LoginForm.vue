@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import {ref} from 'vue';
+import { ref } from 'vue';
+import router from "@/router";
 
 const username = ref('');
 const password = ref('');
 const remember = ref(false);
+const submitDisabled = ref(false);
 
 function submitForm() {
-  this.$router.push({ name: 'booking' });
+  submitDisabled.value = true;
+  router.replace({ name: 'booking' });
+  submitDisabled.value = false;
 }
 </script>
 
@@ -35,13 +39,18 @@ function submitForm() {
           <input type="checkbox" value="remember" v-model="remember"> 记住密码
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">登录</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" :disabled="submitDisabled">
+        <span class="spinner-border spinner-border-sm" :class="{'d-none': !submitDisabled}" aria-hidden="true"></span>
+        登录<span :class="{'d-none': !submitDisabled}">中</span>
+      </button>
       <p class="mt-4 mb-0 text-muted text-center">忘记账号或密码？<a href="mailto:admin@iceean.dev">点击联系管理员</a>
       </p>
     </form>
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="sass">
+.spinner-border.spinner-border-sm
+  height: 1.25rem
+  width: 1.25rem
 </style>

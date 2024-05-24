@@ -12,7 +12,7 @@
 
 ## 技术栈
 
-除了课程要求的 Vue3 与作者个人熟悉的 Bootstrap 外，作者还计划学习并应用以下对其而言较新的技术，以拓展知识面 ~~实际上只是满足个人兴趣而已~~ ：
+除了课程要求的 `Vue3` 与作者个人熟悉的 `Bootstrap` 外，作者还计划学习并应用以下对其而言较新的技术，以拓展知识面 ~~实际上只是满足个人兴趣而已~~ ：
 
 - WASM（使用 Rust 开发）
 - SASS
@@ -29,20 +29,21 @@
 ### 前端需求
 
 - [ ] 登录界面
-  - [ ] 输入用户名与密码
+  - [x] 输入用户名与密码
   - [ ] 密码错误提示
   - [ ] 记住密码
 - [ ] 预约系统
   - [ ] 实验室选择
-  - [ ] 课程表显示（预计使用 grid 布局）
-  - [ ] 已选择、已预约、未预约、被占用采用不同的样式体现
+  - [ ] 周次选择
+  - [x] 课程表显示~~（预计使用 grid 布局）~~已使用table实现
+  - [x] 已选择、已预约、未预约、被占用采用不同的样式体现
   - [ ] 提交预约，弹框提示
   - [ ] 已预约时间总览
 
-- [ ] 其他需求
-  - [ ] 响应式布局，优化移动端体验
-  - [ ] 兼容 Chrome，Safari，Firefox
-  - [ ] sticky 导航栏，给出常用入口、使用帮助
+- [x] 其他需求
+  - [x] 响应式布局，优化移动端体验
+  - [x] 兼容 Chrome，Safari，Firefox
+  - [x] sticky 导航栏，给出常用入口、使用帮助
 
 
 ### 模拟后端需求
@@ -66,7 +67,9 @@
 
 ## 部署
 
-### 使用
+### 使用release包进行部署
+
+*TODO*
 
 ### 使用docker compose从源码构建
 
@@ -84,7 +87,9 @@
   cd LabBookingSystem
   ```
 
-- 运行 `docker compose`。这可能需要较长时间，尤其在使用国内网络时。如有需要，你可以手动[修改 gradle 分发 URL](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper) 并[声明自定义存储库](https://docs.gradle.org/current/userguide/declaring_repositories.html#sec:declaring_custom_repository)。
+- 运行 `docker compose`。
+
+  > 这可能需要较长时间，尤其在使用国内网络环境时。如有需要，你可以手动[修改 gradle 分发 URL](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper) 并[声明自定义存储库](https://docs.gradle.org/current/userguide/declaring_repositories.html#sec:declaring_custom_repository)。
 
   ```bash
   docker compose --env-file docker-mysql.env up -d

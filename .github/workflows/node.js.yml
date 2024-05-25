@@ -6,8 +6,13 @@ name: Node.js CI
 on:
   workflow_dispatch:
     inputs:
+      draft:
+        description: 'Is draft?'
+        required: true
+        default: true
+        type: boolean
       prerelease:
-        description: 'Is Prerelease?'
+        description: 'Is prerelease?'
         required: true
         default: false
         type: boolean
@@ -51,7 +56,7 @@ jobs:
         echo "version=$version" >> $GITHUB_OUTPUT
 
     - name: Create Release and Upload Asset
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -59,5 +64,5 @@ jobs:
         tag_name: v${{ steps.pkg.outputs.version }}
         name: Release v${{ steps.pkg.outputs.version }}
         body: ${{ github.event.inputs.releaseDescription }}
-        draft: true
+        draft: ${{ github.event.inputs.draft }}
         prerelease: ${{ github.event.inputs.prerelease }}

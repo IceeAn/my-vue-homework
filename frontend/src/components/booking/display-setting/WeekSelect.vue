@@ -17,8 +17,8 @@ const toggleEditing = () => {
       weekInput.value?.focus();
     });
   }else{
-    //保证输入的周数在 0 - 18 之间
-    week.value = week.value < 0 ? 0 : week.value > 18 ? 18 : week.value;
+    //保证输入的周数在 1 - 18 之间
+    week.value = week.value < 1 ? 1 : week.value > 18 ? 18 : week.value;
   }
 }
 </script>
@@ -30,7 +30,7 @@ const toggleEditing = () => {
            @blur="toggleEditing" @keydown.enter="(weekInput?.blur())" @change="(weekInput?.blur())">
     <div v-show="!editing" class="btn-group w-100">
       <button type="button" class="btn btn-outline-primary" @click="toggleEditing">
-        <span class="d-none d-md-inline">第 </span>{{ week }} 周
+<!--        <span class="d-none d-md-inline">第 </span>-->第 {{ week }} 周
       </button>
       <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split px-2"
               data-bs-toggle="dropdown" aria-expanded="false">

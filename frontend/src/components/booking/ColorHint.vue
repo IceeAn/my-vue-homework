@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="row rol-cols-3 px-2 ps-md-4 pe-md-2">
+  <div class="row rol-cols-3">
     <a tabindex="0" role="button" class="col btn btn-success mx-1 mx-md-3"
        data-bs-toggle="popover" data-bs-trigger="hover focus"
        data-bs-title="点此无效" data-bs-content="这是对下方课程颜色的解释。">

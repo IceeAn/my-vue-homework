@@ -7,7 +7,7 @@ import StickyNavbar from "@/components/StickyNavbar.vue";
   <header>
     <StickyNavbar/>
   </header>
-  <main class="p-2 p-md-5">
+  <main class="p-2 px-md-5 py-md-3">
     <RouterView/>
   </main>
 

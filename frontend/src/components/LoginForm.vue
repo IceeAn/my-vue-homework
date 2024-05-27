@@ -47,6 +47,7 @@ function submitForm() {
       </p>
     </form>
   </div>
+  <div class="alert alert-info mx-auto text-center col-12 col-md-10 col-lg-8 col-xl-6">当前可以不填账号密码，直接点击登录</div>
 </template>
 
 <style scoped lang="sass">

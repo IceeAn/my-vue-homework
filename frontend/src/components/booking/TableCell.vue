@@ -15,9 +15,12 @@ defineProps<{
         :class="item ? (item.teacher==user ? 'btn-success' : 'btn-secondary'):'btn-primary' "
         :disabled="item && item.teacher!=user"
     >
-      <span v-if="item?.teacher">{{ item.teacher }}<br></span>
+      <span v-if="item">
+        <span class="d-none d-md-inline">{{ item.teacher }}<br></span>
+        <span>{{ item?.comment || '' }}</span>
+      </span>
       <span v-else v-html="'点击<br>申请'"></span>
-      {{ item?.comment || '' }}
+
     </button>
   </td>
 </template>

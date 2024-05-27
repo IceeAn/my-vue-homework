@@ -4,18 +4,22 @@ import { useWeekStore } from "@/stores/weekStore";
 import { useScheduleStore } from "@/stores/scheduleStore";
 import { storeToRefs } from "pinia";
 import { computed, reactive, ref } from "vue";
+import { useLabStore } from "@/stores/LabStore";
 
 const weekStore = useWeekStore()
 const { week } = storeToRefs(weekStore)
 
+const labStore = useLabStore()
+const { lab } = storeToRefs(labStore)
+
 const scheduleStore = useScheduleStore()
-const { schedule } = scheduleStore
+const { schedule } = storeToRefs(scheduleStore)
 
 // defineProps<{
 //   week?: number
 // }>()
 
-let fakeScheduleTable = computed(()=>(schedule[week.value-1]))
+let scheduleTable = computed(()=>(schedule.value[week.value-1]))
 
 </script>
 <template>
@@ -30,7 +34,7 @@ let fakeScheduleTable = computed(()=>(schedule[week.value-1]))
     <tr v-for="i in 8" :key="i">
       <th scope="row">{{ i }}</th>
       <template v-if="i%2 == 1">
-        <TableCell v-for="j in 7" :key="j" :item="fakeScheduleTable[j-1][i/2|0] || undefined"/>
+        <TableCell v-for="j in 7" :key="j" :lab :week :startPeriod="i" :weekday="j" :item="scheduleTable[j-1][i/2|0] || undefined"/>
       </template>
       <td></td>
     </tr>

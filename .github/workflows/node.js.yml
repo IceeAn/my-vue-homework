@@ -46,6 +46,11 @@ jobs:
 
     # - run: cd frontend && npm test
 
+    - name: Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: frontend/dist/
+
     - name: Archive Production Artifact
       run: cd frontend/dist && zip -r ../../build.zip *
 
@@ -66,3 +71,19 @@ jobs:
         body: ${{ github.event.inputs.releaseDescription }}
         draft: ${{ github.event.inputs.draft }}
         prerelease: ${{ github.event.inputs.prerelease }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

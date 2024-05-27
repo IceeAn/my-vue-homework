@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import StickyNavbar from "@/components/StickyNavbar.vue";
+import BookingModal from "@/components/booking/BookingModal.vue";
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import StickyNavbar from "@/components/StickyNavbar.vue";
   <main class="p-2 px-md-5 py-md-3">
     <RouterView/>
   </main>
-
+  <BookingModal/>
 </template>
 
 <style lang="sass">

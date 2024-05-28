@@ -17,7 +17,7 @@ const toggleEditing = () => {
       weekInput.value?.focus();
     });
   }else{
-    //保证输入的周数在 1 - 18 之间
+    //保证输入的周数为 1 - 18 之间的整数
     week.value = Math.floor(week.value < 1 ? 1 : week.value > 18 ? 18 : week.value);
   }
 }

@@ -10,17 +10,20 @@ function logout() {
   <nav class="navbar navbar-expand-md sticky-top bg-theme">
     <div class="container-fluid">
       <RouterLink class="navbar-brand" :to="{name:'booking'}">实验室预约</RouterLink>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-body"
               aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse" id="nav-body">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
             <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link active border-0" aria-current="page" :to="{name:'booking'}">预约</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link border-0" :to="{name:'help'}">帮助</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link border-0" :to="{name:'myBooking'}">我的预约</RouterLink>
           </li>
         </ul>
         <div class="d-flex">

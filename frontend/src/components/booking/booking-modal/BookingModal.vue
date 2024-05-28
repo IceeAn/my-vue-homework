@@ -2,7 +2,7 @@
 import { useBookingStore } from "@/stores/bookingStore";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
-import BookingForm from "@/components/booking/BookingForm.vue";
+import BookingForm from "@/components/booking/booking-modal/BookingForm.vue";
 
 const bookingStore = useBookingStore()
 const refs = storeToRefs(bookingStore)
@@ -22,12 +22,12 @@ const lessonPeriod = computed(()=>{
           </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body px-3 px-md-5">
           <BookingForm/>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">确定</button>
         </div>
       </div>
     </div>

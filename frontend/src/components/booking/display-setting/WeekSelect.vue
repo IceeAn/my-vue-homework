@@ -18,7 +18,7 @@ const toggleEditing = () => {
     });
   }else{
     //保证输入的周数在 1 - 18 之间
-    week.value = week.value < 1 ? 1 : week.value > 18 ? 18 : week.value;
+    week.value = Math.floor(week.value < 1 ? 1 : week.value > 18 ? 18 : week.value);
   }
 }
 </script>
@@ -27,7 +27,7 @@ const toggleEditing = () => {
   <div class="col col-6 px-1 px-md-2">
     <input v-show="editing" v-model.lazy="week" ref="weekInput"
            class="form-control h-100" type="number"
-           @blur="toggleEditing" @keydown.enter="(weekInput?.blur())" @change="(weekInput?.blur())">
+           @blur="toggleEditing" @keydown.enter="(weekInput?.blur())">
     <div v-show="!editing" class="btn-group w-100">
       <button type="button" class="btn btn-outline-primary" @click="toggleEditing">
 <!--        <span class="d-none d-md-inline">第 </span>-->第 {{ week }} 周
@@ -49,5 +49,9 @@ const toggleEditing = () => {
 </template>
 
 <style scoped lang="sass">
-
+input[type="number"]
+  moz-appearance: textfield
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button
+    -webkit-appearance: none
 </style>

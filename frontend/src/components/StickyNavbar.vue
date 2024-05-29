@@ -20,10 +20,13 @@ function logout() {
             <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link active border-0" aria-current="page" :to="{name:'booking'}">预约</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link border-0" :to="{name:'help'}">帮助</RouterLink>
+            <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link border-0" :to="{name:'courseManage'}">课程管理</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link border-0" :to="{name:'myBooking'}">我的预约</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="btn btn-nav text-start px-2 mx-md-2 nav-link border-0" :to="{name:'help'}">帮助</RouterLink>
           </li>
         </ul>
         <div class="d-flex">

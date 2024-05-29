@@ -1,0 +1,54 @@
+<script setup lang="ts">
+import { useCourseStore } from "@/stores/courseStore"
+import { storeToRefs } from "pinia";
+
+const courseStore = useCourseStore()
+const { myCourses } = storeToRefs(courseStore)
+
+function setOperatingCourse(courseId: string) {
+  console.log(JSON.stringify(courseStore.findCourseById(courseId)))
+  courseStore.operatingCourse = JSON.parse(JSON.stringify(courseStore.findCourseById(courseId)))
+}
+</script>
+
+<template>
+  增删改查/删除同时删除预约<br>
+  名称 课时
+    <div class="row row-cols-1 col-12 col-md-10 col-lg-8 mx-auto">
+      <div class="col mb-3">
+        <button class="btn btn-success btn-lg d-block w-100 bi bi-plus-circle-dotted" data-bs-toggle="modal" data-bs-target="#add-course-modal"> 添加课程</button>
+      </div>
+      <div class="col">
+        <table id="table" class="table table-striped text-center align-middle">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>课程</th>
+            <th>学时</th>
+            <th class="col-4">操作</th>
+          </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr v-for="(course, index) in myCourses" :key="course.id">
+              <td>{{ index + 1 }}</td>
+              <td>{{ course.name }}</td>
+              <td>{{ course.creditHour }}</td>
+              <td>
+                <button class="btn btn-sm btn-primary bi bi-pencil-square me-0 me-md-2 mb-2 mb-md-0"
+                        data-bs-toggle="modal" data-bs-target="#edit-course-modal"
+                        @click="setOperatingCourse(course.id)"> 修改</button>
+                <br class="d-inline d-md-none">
+                <button class="btn btn-sm btn-danger bi bi-trash"
+                        data-bs-toggle="modal" data-bs-target="#delete-course-modal"
+                        @click="setOperatingCourse(course.id)"> 删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</template>
+
+<style scoped lang="sass">
+
+</style>

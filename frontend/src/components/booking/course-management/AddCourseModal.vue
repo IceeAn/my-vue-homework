@@ -6,18 +6,18 @@ import { ref } from "vue";
 const courseStore = useCourseStore();
 
 let operatingCourse = ref({
-  id: null,
-  teacher: null,
+  id: undefined,
+  teacher: undefined,
   name: "",
-  creditHour: null
+  creditHour: undefined
 })
 
 function reset(){
   operatingCourse.value = {
-    id: null,
-    teacher: null,
+    id: undefined,
+    teacher: undefined,
     name: "",
-    creditHour: null
+    creditHour: undefined
   }
 }
 

@@ -71,10 +71,10 @@ export const useCourseStore = defineStore('course', () => {
         return courses.value.filter(item => item.teacher.id === currentTeacherStore.currentTeacher.id);
     });
 
-    function addCourse(course: { id?: string, teacher?: Teacher, name: string, creditHour?: string }) {
-        course.id = 100 + IdGenerator().getNextId();
+    function addCourse(course: { id?: string, teacher?: Teacher, name: string, creditHour?: number }) {
+        course.id = "" + 100 + IdGenerator().getNextId();
         course.teacher = currentTeacherStore.currentTeacher;
-        courses.value.push(course);
+        courses.value.push(course as Course);
     }
 
     function deleteCourse(id: string) {

@@ -1,14 +1,37 @@
 <script setup lang="ts">
-
 import BasicBookingInput from "@/components/booking/booking-modal/BasicBookingInput.vue";
+
+import { useScheduleStore } from "@/stores/scheduleStore";
+import { storeToRefs } from "pinia";
+import { useBookingStore } from "@/stores/bookingStore";
+import { computed } from "vue";
+import { useLabStore } from "@/stores/LabStore";
+
+const scheduleStore = useScheduleStore()
+const { schedule } = storeToRefs(scheduleStore)
+
+const labStore = useLabStore()
+const { lab } = storeToRefs(labStore)
+
+const bookingStore = useBookingStore()
+const refs = storeToRefs(bookingStore)
+
+//TODO: 解出具体变量，防止全部渲染，提升性能
+function isWeekBooked(i: number, j: number): boolean {
+  let week = (i - 1) * 6 + j - 1
+  let weekday = refs.period.value.weekday - 1
+  let start = Math.floor(refs.period.value.startPeriod/2)
+  let weekSchedule = schedule.value.find(item => item.lab === lab.value)?.schedule || []
+  return weekSchedule[week][weekday][start] != null
+}
 </script>
 
 <template>
-<!--  <p>预约形式：预约本周本节｜选择多周本节｜按周次区间预约</p>-->
-<!--  <p>选择周次：按钮格式按课程表来</p>-->
-<!--  ok<p>周次时段允许全部预约｜单双周预约</p>-->
-<!--  <p>是否允许调剂： 不允许｜整体调剂｜分节调剂</p>-->
-<!--  <p>预约用途：课程｜实验｜考试｜其他</p>-->
+  <!--  <p>预约形式：预约本周本节｜选择多周本节｜按周次区间预约</p>-->
+  <!--  <p>选择周次：按钮格式按课程表来</p>-->
+  <!--  ok<p>周次时段允许全部预约｜单双周预约</p>-->
+  <!--  <p>是否允许调剂： 不允许｜整体调剂｜分节调剂</p>-->
+  <!--  <p>预约用途：课程｜实验｜考试｜其他</p>-->
   <ul class="nav nav-pills mt-2" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active"
@@ -34,9 +57,10 @@ import BasicBookingInput from "@/components/booking/booking-modal/BasicBookingIn
   </ul>
   <hr class="mt-2 mb-3">
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="booking-form-1" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    <div class="tab-pane fade show active" id="booking-form-1" role="tabpanel" aria-labelledby="pills-home-tab"
+         tabindex="0">
       <form>
-<!--        选择课程名称；选择预约用途-->
+        <!--        选择课程名称；选择预约用途-->
         <BasicBookingInput/>
       </form>
     </div>
@@ -44,9 +68,13 @@ import BasicBookingInput from "@/components/booking/booking-modal/BasicBookingIn
       <form>
         <div class="d-block w-100 btn-group mb-2" role="group" v-for="i in 3" :key="i">
           <template v-for="j in 6" :key="j">
-            <input type="checkbox" class="btn-check" :id="`weeks-select-${(i-1)*6+j}`" autocomplete="off">
-            <label class="col-2 btn btn-outline-primary" :for="`weeks-select-${(i-1)*6+j}`">
-              <span class="d-none d-md-inline">第</span>{{(i-1)*6+j}}<span class="d-none d-md-inline">周</span>
+            <input type="checkbox" class="btn-check"
+                   :id="`weeks-select-${(i-1)*6+j}`"
+                   autocomplete="off" :disabled="isWeekBooked(i,j)">
+            <label class="col-2 btn"
+                   :class="isWeekBooked(i,j)? 'btn-secondary' : 'btn-outline-primary'"
+                   :for="`weeks-select-${(i-1)*6+j}`">
+              <span class="d-none d-lg-inline">第</span>{{ (i - 1) * 6 + j }}<span class="d-none d-lg-inline">周</span>
             </label>
           </template>
         </div>

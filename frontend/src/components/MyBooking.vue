@@ -22,6 +22,7 @@
     </div>
     <div class="fs-4 mt-3 badge-group">
       <span class="badge rounded-pill me-2">实验室A</span>
+      <span class="badge rounded-pill me-2">课程2</span>
       <span class="badge rounded-pill me-2">1-8周</span>
       <span class="badge rounded-pill me-2">2-3节</span>
       <span class="badge rounded-pill me-2">仅单周</span>
@@ -30,7 +31,7 @@
 </template>
 
 <style scoped lang="sass">
-$colors: (#0d6efd, #1ea120, #7e4fd5, #de942a)
+$colors: (#0d6efd, #07a9b9, #1ea120, #7e4fd5, #de942a)
 
 .badge-group
   .badge

@@ -1,7 +1,7 @@
 import { computed, reactive, ref } from 'vue'
 import type { Ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { Course } from "@/types";
+import type { Course, Teacher } from "@/types";
 import { IdGenerator } from "@/stores/idGenerator";
 import { useCurrentTeacherStore } from "@/stores/currentTeacherStore";
 
@@ -71,7 +71,7 @@ export const useCourseStore = defineStore('course', () => {
         return courses.value.filter(item => item.teacher.id === currentTeacherStore.currentTeacher.id);
     });
 
-    function addCourse(course: { name: string, creditHour: string }) {
+    function addCourse(course: { id?: string, teacher?: Teacher, name: string, creditHour?: string }) {
         course.id = 100 + IdGenerator().getNextId();
         course.teacher = currentTeacherStore.currentTeacher;
         courses.value.push(course);

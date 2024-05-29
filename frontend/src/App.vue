@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import StickyNavbar from "@/components/StickyNavbar.vue";
-import BookingModal from "@/components/booking/booking-modal/BookingModal.vue";
+import GlobalModals from "@/components/GlobalModals.vue";
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import BookingModal from "@/components/booking/booking-modal/BookingModal.vue";
   <main class="p-2 px-md-5 py-md-3">
     <RouterView/>
   </main>
-  <BookingModal/>
+  <GlobalModals/>
 </template>
 
 <style lang="sass">

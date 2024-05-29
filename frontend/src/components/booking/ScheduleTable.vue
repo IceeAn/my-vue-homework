@@ -19,7 +19,7 @@ const { schedule } = storeToRefs(scheduleStore)
 //   week?: number
 // }>()
 
-let scheduleTable = computed(()=>(schedule.value[week.value-1]))
+let scheduleTable = computed(()=>(schedule.value.find(item => item.lab ==lab.value)?.schedule[week.value-1]))
 
 </script>
 <template>
@@ -34,7 +34,7 @@ let scheduleTable = computed(()=>(schedule.value[week.value-1]))
     <tr v-for="i in 8" :key="i">
       <th scope="row">{{ i }}</th>
       <template v-if="i%2 == 1">
-        <TableCell v-for="j in 7" :key="j" :lab :week :startPeriod="i" :weekday="j" :item="scheduleTable[j-1][i/2|0] || undefined"/>
+        <TableCell v-for="j in 7" :key="j" :lab :week :startPeriod="i" :weekday="j" :item="scheduleTable?.[j-1][i/2|0] || undefined"/>
       </template>
       <td></td>
     </tr>

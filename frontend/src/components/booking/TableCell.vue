@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { Lesson } from "@/types";
 import { useBookingStore } from "@/stores/bookingStore";
+import { useTeacherStore } from "@/stores/teacherStore";
+import { useCurrentTeacherStore } from "@/stores/currentTeacherStore";
 
-let user = '1';
+const teachers = useTeacherStore().teachers
+const user = useCurrentTeacherStore().currentTeacher.id
 
 const props = defineProps<{
   item?: Lesson,
@@ -12,9 +15,13 @@ const props = defineProps<{
   startPeriod: number
 }>()
 
+const nameOf = (teacherId: string) => {
+  return teachers.find(item => item.id == teacherId)?.name
+}
+
 const bookingStore = useBookingStore()
 
-function initApply(){
+function initApply() {
   bookingStore.$reset()
   bookingStore.week.push(props.week)
   bookingStore.period.weekday = props.weekday
@@ -33,8 +40,8 @@ function initApply(){
         @click="initApply"
     >
       <span v-if="item">
-        <span class="d-none d-md-inline">{{ item.teacher }}<br></span>
-        <span>{{ item?.comment || '' }}</span>
+        <span class="d-none d-md-inline">{{ nameOf(item.teacher) }}<br></span>
+        <span>{{ item?.bookingType || '' }}</span>
       </span>
       <span v-else>点击<br>申请</span>
 

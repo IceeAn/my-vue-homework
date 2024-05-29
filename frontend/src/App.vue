@@ -21,4 +21,11 @@ $theme-color: #e4eaff
 .row-cols-7>*
   flex: 0 0 auto
   width: 14.28571429%
+
+
+input[type="number"]
+  moz-appearance: textfield
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button
+    -webkit-appearance: none
 </style>

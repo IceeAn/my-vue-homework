@@ -124,9 +124,5 @@ function isWeekBooked(i: number, j: number): boolean {
 </template>
 
 <style scoped lang="sass">
-input[type="number"]
-  moz-appearance: textfield
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button
-    -webkit-appearance: none
+
 </style>

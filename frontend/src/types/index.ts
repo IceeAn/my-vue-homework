@@ -12,8 +12,18 @@ export type Course = {
 
 export type Lesson = {
     teacher: string;
-    course?: Course
+    course: string;
     bookingType?: "课程"|"考试"|"实验"|"其他";
+}
+
+export type LessonWithTime = {
+    lesson: Lesson
+    time: {
+        lab: string;
+        week: number;
+        day: number;
+        period: number;
+    }
 }
 
 export type Schedule = {lab: string, schedule: LabSchedule}[]

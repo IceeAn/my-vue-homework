@@ -27,6 +27,8 @@ function initApply() {
   bookingStore.period.weekday = props.weekday
   bookingStore.period.startPeriod = props.startPeriod
   bookingStore.defaultLab = props.lab
+  if(!props.item)return;
+  bookingStore.existingLesson = props.item;
 }
 </script>
 
@@ -34,9 +36,8 @@ function initApply() {
   <td rowspan="2">
     <button
         class="course d-inline-block btn w-100 h-100"
-        data-bs-toggle="modal" data-bs-target="#booking-modal"
+        data-bs-toggle="modal" :data-bs-target="item ? '#booking-info-modal' :'#booking-modal'"
         :class="item ? (item.teacher==user ? 'btn-success' : 'btn-secondary'):'btn-primary' "
-        :disabled="item && item.teacher!=user"
         @click="initApply"
     >
       <span v-if="item">

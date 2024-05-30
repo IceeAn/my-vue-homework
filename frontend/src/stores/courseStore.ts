@@ -57,8 +57,8 @@ export const useCourseStore = defineStore('course', () => {
         {
             id: "6",
             teacher: {
-                id: "2",
-                name: "张老师"
+                id: "3",
+                name: "李老师"
             },
             name: "课程C",
             creditHour: 16

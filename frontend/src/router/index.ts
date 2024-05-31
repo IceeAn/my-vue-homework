@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { useLayoutStore } from "@/stores/layoutStore";
+import { storeToRefs } from "pinia";
 
 const router = createRouter({
     history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -32,9 +34,5 @@ const router = createRouter({
     ]
 })
 
-router.afterEach((to, from) => {
-    console.log('to', to)
-    console.log('from', from)
-});
 
 export default router

@@ -12,7 +12,6 @@ const submitDisabled = ref(false);
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-
 const redirect = computed(() => route.query.redirect);
 
 

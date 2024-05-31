@@ -3,12 +3,13 @@ import "bootstrap"
 import "bootstrap-icons/font/bootstrap-icons.css"
 
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createPinia, storeToRefs } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import App from './App.vue'
 import router from './router'
 import { useCurrentTeacherStore } from "@/stores/currentTeacherStore";
+import { useLayoutStore } from "@/stores/layoutStore";
 
 const app = createApp(App)
 
@@ -26,6 +27,13 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
+});
+
+const { loading, navLoadingElement} = storeToRefs(useLayoutStore())
+
+router.afterEach(() => {
+    loading.value = false
+    navLoadingElement.value = -1
 });
 
 app.mount('#app')

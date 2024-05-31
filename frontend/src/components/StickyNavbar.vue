@@ -25,7 +25,7 @@ function logout() {
   router.replace({ name: 'login' })
 }
 
-const setLoading = (index) => {
+const setLoading = (index: number) => {
   setTimeout(() => loading.value = true, 300)
   navLoadingElement.value = index
 }

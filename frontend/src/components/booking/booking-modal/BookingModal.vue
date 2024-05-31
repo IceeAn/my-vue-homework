@@ -34,7 +34,9 @@ function confirm() {
   const period = (bookingStore.period.startPeriod - 1) / 2
   const activeTabId = getActiveTabId()
   if (activeTabId === 'booking-form-1') {
-    bookingStore.weeks.splice(0, bookingStore.weeks.length).push(bookingStore.defaultWeek)
+    console.log(bookingStore.defaultWeek)
+    bookingStore.weeks.splice(0, bookingStore.weeks.length)
+    bookingStore.weeks.push(bookingStore.defaultWeek)
   }
   if (activeTabId === 'booking-form-3') {
     if (bookingStore.weekRange.start === null || bookingStore.weekRange.end === null) {

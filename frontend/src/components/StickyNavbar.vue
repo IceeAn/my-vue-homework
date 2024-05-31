@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import router from "@/router";
+import { useCurrentTeacherStore } from "@/stores/currentTeacherStore";
+
+const currentTeacher = useCurrentTeacherStore();
 
 function logout() {
-  console.log('logout')
+  currentTeacher.logout();
   router.replace({name: 'login'})
 }
 </script>

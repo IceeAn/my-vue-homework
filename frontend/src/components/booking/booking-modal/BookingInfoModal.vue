@@ -17,7 +17,7 @@ const courseStore = useCourseStore()
 
 const { currentTeacher } = storeToRefs(useCurrentTeacherStore())
 
-const isMyLesson = computed(() => refs.existingLesson.value?.teacher === currentTeacher.value.id)
+const isMyLesson = computed(() => refs.existingLesson.value?.teacher === currentTeacher.value?.id)
 </script>
 
 <template>

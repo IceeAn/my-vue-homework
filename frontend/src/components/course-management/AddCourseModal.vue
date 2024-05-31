@@ -28,6 +28,7 @@ function cancel(){
 function confirm(){
   courseStore.addCourse(operatingCourse.value)
   reset()
+  return true
 }
 </script>
 

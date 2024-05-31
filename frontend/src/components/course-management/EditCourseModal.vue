@@ -8,6 +8,7 @@ const { operatingCourse } = storeToRefs(courseStore);
 
 function confirm(){
   courseStore.updateCourse(operatingCourse.value)
+  return true
 }
 </script>
 

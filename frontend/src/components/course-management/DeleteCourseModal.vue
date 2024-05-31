@@ -8,6 +8,7 @@ const { operatingCourse } = storeToRefs(courseStore);
 
 function confirm(){
   courseStore.deleteCourse(operatingCourse.value.id);
+  return true
 }
 </script>
 

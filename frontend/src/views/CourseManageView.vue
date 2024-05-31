@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CourseManage from "@/components/booking/course-management/CourseManage.vue";
+import CourseManage from "@/components/course-management/CourseManage.vue";
 </script>
 
 <template>

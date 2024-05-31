@@ -11,10 +11,17 @@ const lessonPeriod = computed(()=>{
   return `${refs.period.value.startPeriod}-${refs.period.value.startPeriod+1}`
 })
 
+function confirm(){
+  for(let week of refs.weeks.value){
+     console.log(week, refs.period.value.weekday, (refs.period.value.startPeriod-1)/2)
+  }
+  return false;
+}
+
 </script>
 
 <template>
-  <ModalFrame id="booking-modal" :cancel="()=>{return 0}" :confirm="()=>{return 0}">
+  <ModalFrame id="booking-modal" :cancel="()=>{}" :confirm="confirm">
     <template #header>
       {{refs.defaultLab.value}} 星期{{ " 一二三四五六日"[refs.period.value.weekday] }} 第 {{lessonPeriod}} 节预约
     </template>

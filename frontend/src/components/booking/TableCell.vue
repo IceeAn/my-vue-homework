@@ -23,7 +23,8 @@ const bookingStore = useBookingStore()
 
 function initApply() {
   bookingStore.$reset()
-  bookingStore.week.push(props.week)
+  bookingStore.defaultWeek = props.week -1
+  bookingStore.weeks.push(props.week -1)
   bookingStore.period.weekday = props.weekday
   bookingStore.period.startPeriod = props.startPeriod
   bookingStore.defaultLab = props.lab

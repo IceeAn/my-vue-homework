@@ -1,9 +1,18 @@
 <script setup lang="ts">
-defineProps<{
+import { Modal } from "bootstrap";
+import { onMounted } from "vue";
+
+let props = defineProps<{
   id: string,
   cancel?: () => void,
-  confirm: () => void
+  confirm: () => boolean
 }>()
+
+let modal: Modal | null = null
+
+onMounted(() => {
+  modal = new Modal(document.getElementById(props.id) as HTMLElement)
+})
 </script>
 
 <template>
@@ -21,7 +30,7 @@ defineProps<{
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cancel">取消</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="confirm">确定</button>
+          <button type="button" class="btn btn-primary" @click="confirm() && modal?.hide()">确定</button>
         </div>
       </div>
     </div>

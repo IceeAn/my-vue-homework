@@ -21,7 +21,7 @@ const isMyLesson = computed(() => refs.existingLesson.value?.teacher === current
 </script>
 
 <template>
-  <ModalFrame id="booking-info-modal" :cancel="()=>{return 0}" :confirm="()=>{return 0}">
+  <ModalFrame id="booking-info-modal" :cancel="()=>{return 0}" :confirm="()=>{return true}">
     <template #header>
       {{ refs.defaultLab.value }} 星期{{ " 一二三四五六日"[refs.period.value.weekday] }} 第 {{ lessonPeriod }} 节信息
     </template>

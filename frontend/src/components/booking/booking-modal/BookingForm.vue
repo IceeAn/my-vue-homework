@@ -14,13 +14,11 @@ const labStore = useLabStore()
 const { lab } = storeToRefs(labStore)
 
 const bookingStore = useBookingStore()
-const refs = storeToRefs(bookingStore)
 
-//TODO: 解出具体变量，防止全部渲染，提升性能
 function isWeekBooked(i: number, j: number): boolean {
   let week = (i - 1) * 6 + j - 1
-  let weekday = refs.period.value.weekday - 1
-  let start = Math.floor(refs.period.value.startPeriod/2)
+  let weekday = bookingStore.period.weekday - 1
+  let start = Math.floor(bookingStore.period.startPeriod/2)
   let weekSchedule = schedule.value.find(item => item.lab === lab.value)?.schedule || []
   return weekSchedule[week][weekday][start] != null
 }
@@ -60,7 +58,6 @@ function isWeekBooked(i: number, j: number): boolean {
     <div class="tab-pane fade show active" id="booking-form-1" role="tabpanel" aria-labelledby="pills-home-tab"
          tabindex="0">
       <form>
-        <!--        选择课程名称；选择预约用途-->
         <BasicBookingInput/>
       </form>
     </div>
@@ -70,6 +67,8 @@ function isWeekBooked(i: number, j: number): boolean {
           <template v-for="j in 6" :key="j">
             <input type="checkbox" class="btn-check"
                    :id="`weeks-select-${(i-1)*6+j}`"
+                   :value="(i-1)*6+j-1"
+                   v-model="bookingStore.weeks"
                    autocomplete="off" :disabled="isWeekBooked(i,j)">
             <label class="col-2 btn"
                    :class="isWeekBooked(i,j)? 'btn-secondary' : 'btn-outline-primary'"

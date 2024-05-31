@@ -21,8 +21,8 @@ app.use(router)
 const currentTeacherStore = useCurrentTeacherStore()
 
 router.beforeEach((to, from, next) => {
-    if (!currentTeacherStore.currentTeacher && to.name !== 'login') {
-        next({ name: 'login', query: { redirect: to.name } });
+    if (currentTeacherStore.currentTeacher.id === '' && to.name !== 'login') {
+        router.replace({ name: 'login', query: { redirect: to.name as string } });
     } else {
         next();
     }

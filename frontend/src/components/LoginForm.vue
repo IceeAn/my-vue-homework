@@ -19,11 +19,11 @@ const redirect = computed(() => route.query.redirect);
 const currentTeacherStore = useCurrentTeacherStore();
 
 function submitForm() {
-  if(username.value === '' && password.value === '' || username.value === 'admin' && password.value === '123456') {
+  if (username.value === '' && password.value === '' || username.value === 'admin' && password.value === '123456') {
     submitDisabled.value = true;
     currentTeacherStore.login({ id: '1', name: '王老师' });
-    router.replace({ name: redirect.value ?? 'booking' });
-  }else{
+    router.replace({ name: typeof redirect.value === 'string' ? redirect.value : 'booking' });
+  } else {
     wrongIdentity.value = true;
   }
 }

@@ -33,8 +33,8 @@ const router = createRouter({
 })
 
 router.afterEach((to, from) => {
-  console.log('to', to)
-  console.log('from', from)
+    console.log('to', to)
+    console.log('from', from)
 });
 
 export default router

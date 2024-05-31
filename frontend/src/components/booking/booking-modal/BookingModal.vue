@@ -42,11 +42,15 @@ function confirm() {
       return false
     }
     if (bookingStore.weekRange.start > bookingStore.weekRange.end) {
-      console.log('周次区间选择错误')
+      console.log('周次区间选择错误：开始周次不应大于结束周次')
       return false
     }
     if (bookingStore.weekRange.start < 1 || bookingStore.weekRange.end > 18) {
-      console.log('周次区间选择错误')
+      console.log('周次区间选择错误：周次需在1-18之间')
+      return false
+    }
+    if (bookingStore.weekRange.start % 1 || bookingStore.weekRange.end % 1) {
+      console.log('周次区间选择错误：周次须为整数')
       return false
     }
     const startWeek = bookingStore.weekRange.start - 1

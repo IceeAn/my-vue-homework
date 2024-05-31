@@ -7,13 +7,13 @@ import { useBookingStore } from "@/stores/bookingStore";
 const { lastId, getNextId } = IdGenerator();
 
 const { myCourses } = storeToRefs(useCourseStore())
-const { course, purpose } = storeToRefs(useBookingStore())
+const { courseId, purpose } = storeToRefs(useBookingStore())
 </script>
 
 <template>
   <div class="row row-cols-2">
     <div class="col">
-      <select class="form-select mb-3" v-model="course">
+      <select class="form-select mb-3" v-model="courseId">
         <option selected value="-1">选择课程名称</option>
         <option v-for="courseForSelect in myCourses" :key="courseForSelect.id"
                 :value="courseForSelect.id">

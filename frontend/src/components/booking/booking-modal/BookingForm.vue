@@ -4,7 +4,6 @@ import BasicBookingInput from "@/components/booking/booking-modal/BasicBookingIn
 import { useScheduleStore } from "@/stores/scheduleStore";
 import { storeToRefs } from "pinia";
 import { useBookingStore } from "@/stores/bookingStore";
-import { computed } from "vue";
 import { useLabStore } from "@/stores/LabStore";
 
 const scheduleStore = useScheduleStore()
@@ -14,22 +13,18 @@ const labStore = useLabStore()
 const { lab } = storeToRefs(labStore)
 
 const bookingStore = useBookingStore()
+const { weeks } = storeToRefs(bookingStore)
 
-function isWeekBooked(i: number, j: number): boolean {
+function isWeekBooked(i: number, j: number) {
   let week = (i - 1) * 6 + j - 1
   let weekday = bookingStore.period.weekday - 1
-  let start = Math.floor(bookingStore.period.startPeriod/2)
-  let weekSchedule = schedule.value.find(item => item.lab === lab.value)?.schedule || []
-  return weekSchedule[week][weekday][start] != null
+  let start = Math.floor(bookingStore.period.startPeriod / 2)
+  return scheduleStore.isBooked(lab.value, week, weekday, start)
 }
+
 </script>
 
 <template>
-  <!--  <p>预约形式：预约本周本节｜选择多周本节｜按周次区间预约</p>-->
-  <!--  <p>选择周次：按钮格式按课程表来</p>-->
-  <!--  ok<p>周次时段允许全部预约｜单双周预约</p>-->
-  <!--  <p>是否允许调剂： 不允许｜整体调剂｜分节调剂</p>-->
-  <!--  <p>预约用途：课程｜实验｜考试｜其他</p>-->
   <ul class="nav nav-pills mt-2" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active"
@@ -68,10 +63,10 @@ function isWeekBooked(i: number, j: number): boolean {
             <input type="checkbox" class="btn-check"
                    :id="`weeks-select-${(i-1)*6+j}`"
                    :value="(i-1)*6+j-1"
-                   v-model="bookingStore.weeks"
-                   autocomplete="off" :disabled="isWeekBooked(i,j)">
+                   v-model="weeks"
+                   autocomplete="off" :disabled="isWeekBooked(i,j).value">
             <label class="col-2 btn"
-                   :class="isWeekBooked(i,j)? 'btn-secondary' : 'btn-outline-primary'"
+                   :class="isWeekBooked(i,j).value? 'btn-secondary' : 'btn-outline-primary'"
                    :for="`weeks-select-${(i-1)*6+j}`">
               <span class="d-none d-lg-inline">第</span>{{ (i - 1) * 6 + j }}<span class="d-none d-lg-inline">周</span>
             </label>
@@ -86,36 +81,37 @@ function isWeekBooked(i: number, j: number): boolean {
           <div class="col col-12 col-lg-6">
             <div class="input-group mb-3">
               <span class="input-group-text">从第</span>
-              <input type="number" class="form-control" placeholder="周次" aria-label="start week">
+              <input v-model="bookingStore.weekRange.start" type="number" class="form-control" placeholder="周次"
+                     aria-label="start week">
               <span class="input-group-text">周</span>
               <span class="input-group-text">到第</span>
-              <input type="number" class="form-control" placeholder="周次" aria-label="end week">
+              <input v-model="bookingStore.weekRange.end" type="number" class="form-control" placeholder="周次"
+                     aria-label="end week">
               <span class="input-group-text">周</span>
             </div>
           </div>
           <div class="col col-12 col-lg-6">
             <div class="row">
               <div class="col col-5">
-                <select class="form-select mb-3">
-                  <option value="1" selected>全部周次</option>
-                  <option value="2">单周</option>
-                  <option value="3">双周</option>
+                <select v-model="bookingStore.singleWeek" class="form-select mb-3">
+                  <option selected>全部周次</option>
+                  <option>单周</option>
+                  <option>双周</option>
                 </select>
               </div>
               <div class="col col-7">
                 <div class="input-group mb-3">
                   <span class="input-group-text">调剂&nbsp;<i class="bi bi-question-circle"></i></span>
-                  <select class="form-select">
-                    <option value="1" selected>不允许</option>
-                    <option value="2">整体调剂</option>
-                    <option value="3">分节调剂</option>
+                  <select v-model="bookingStore.allowAdjust" class="form-select">
+                    <option selected>不允许</option>
+                    <option>整体调剂</option>
+                    <option>分节调剂</option>
                   </select>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <BasicBookingInput/>
       </form>
     </div>

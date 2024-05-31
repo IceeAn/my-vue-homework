@@ -2,7 +2,6 @@
 import { useBookingStore } from "@/stores/bookingStore";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
-import BookingForm from "@/components/booking/booking-modal/BookingForm.vue";
 import ModalFrame from "@/components/common/ModalFrame.vue";
 import { useCourseStore } from "@/stores/courseStore";
 import { useCurrentTeacherStore } from "@/stores/currentTeacherStore";

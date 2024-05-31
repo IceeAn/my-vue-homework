@@ -783,5 +783,13 @@ export const useScheduleStore = defineStore('schedule', () => {
         )
     }
 
-    return { schedule, calculateCourseHours, myLessons }
+    function isBooked(lab:string, week: number, day: number, period: number) {
+        return computed(()=> schedule.find(item => item.lab === lab)?.schedule[week][day][period] !== null)
+    }
+
+    function updateLesson(lab: string, week: number, day: number, period: number, lesson: Lesson) {
+        schedule.find(item => item.lab === lab)!.schedule[week][day][period] = lesson
+    }
+
+    return { schedule, calculateCourseHours, myLessons, isBooked, updateLesson }
 })

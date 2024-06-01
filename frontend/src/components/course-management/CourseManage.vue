@@ -17,6 +17,10 @@ function setOperatingCourse(courseId: string) {
 <template>
   TODO:删除同时删除预约<br>
   <div class="row row-cols-1 col-12 col-md-10 col-lg-8 mx-auto">
+    <div class="col mb-3 alert alert-info text-center">
+      如果需要预约超出预定学时的课，可在此修改课程学时，预定完成再修改回去。<br>
+      注意：若学时超过预定学时，下方表格中学时会变为<span class="text-danger">红色</span>，提示您已超出预定学时。
+    </div>
     <div class="col mb-3">
       <button class="btn btn-success btn-lg d-block w-100 bi bi-plus-circle-dotted" data-bs-toggle="modal"
               data-bs-target="#add-course-modal"> 添加课程

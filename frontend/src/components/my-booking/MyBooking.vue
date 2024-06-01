@@ -4,6 +4,7 @@ import { storeToRefs } from "pinia";
 import { useCourseStore } from "@/stores/courseStore";
 import { ref, computed, watch, reactive } from "vue";
 import type { LessonWithTime } from "@/types";
+import { useMyBookingSelectionStore } from "@/stores/myBookingSelectionStore";
 
 const scheduleStore = useScheduleStore()
 const { myLessons } = storeToRefs(scheduleStore)
@@ -39,13 +40,8 @@ const startPeriod = computed({
   }
 })
 
-const selectedLessons = ref<LessonWithTime[]>([])
-
-const deleteSlectedLessons = () => {
-  selectedLessons.value.forEach(lesson => {
-    scheduleStore.deleteLesson(lesson.time.lab, lesson.time.week, lesson.time.day, lesson.time.period)
-  })
-}
+const myBookingSelectionStore = useMyBookingSelectionStore()
+const { selectedLessons } = storeToRefs(myBookingSelectionStore)
 
 const selectAll = computed({
   get: () => selectedLessons.value.length === filteredLessons.value.length && filteredLessons.value.length > 0,
@@ -191,7 +187,8 @@ watch(filter, (newFilter) => {
         </div>
       </div>
     </div>
-    <button class="btn btn-danger mt-3" @click="deleteSlectedLessons" :disabled="selectedLessons.length === 0">
+    <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#batch-deletion-confirm-modal"
+            :disabled="selectedLessons.length === 0">
       <i class="bi bi-trash3"></i> 取消选中预约
     </button>
     <div class="fs-5 my-3 badge-group">

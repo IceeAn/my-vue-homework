@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MyBooking from "@/components/MyBooking.vue";
+import MyBooking from "@/components/my-booking/MyBooking.vue";
 </script>
 
 <template>

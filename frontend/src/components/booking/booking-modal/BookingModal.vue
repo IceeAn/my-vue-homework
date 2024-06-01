@@ -7,9 +7,11 @@ import ModalFrame from "@/components/common/ModalFrame.vue";
 import { useCurrentTeacherStore } from "@/stores/currentTeacherStore";
 import { useScheduleStore } from "@/stores/scheduleStore";
 import type { LabSchedule, Schedule } from "@/types";
+import { useCourseStore } from "@/stores/courseStore";
 
 const bookingStore = useBookingStore()
 const scheduleStore = useScheduleStore()
+const courseStore = useCourseStore()
 const currentTeacherStore = useCurrentTeacherStore()
 const lessonPeriod = computed(() => {
   return `${bookingStore.period.startPeriod}-${bookingStore.period.startPeriod + 1}`
@@ -39,7 +41,7 @@ function confirm() {
   }
   if (activeTabId === 'booking-form-3') {
     if (bookingStore.weekRange.start === null || bookingStore.weekRange.end === null) {
-      alert('未选择周次区间')
+      alert('错误：未选择周次区间')
       return false
     }
     if (bookingStore.weekRange.start > bookingStore.weekRange.end) {
@@ -47,7 +49,7 @@ function confirm() {
       return false
     }
     if (bookingStore.weekRange.start < 1 || bookingStore.weekRange.end > 18) {
-      alert('周次区间选择错误：周次需在1-18之间')
+      alert('周次区间选择错误：周次须在1-18之间')
       return false
     }
     if (bookingStore.weekRange.start % 1 || bookingStore.weekRange.end % 1) {
@@ -64,7 +66,7 @@ function confirm() {
       case "全部周次":
         for (let i = startWeek; i <= endWeek; i++) {
           if (scheduleStore.isBooked(bookingStore.defaultLab, i, weekday, period).value) {
-            alert(`${bookingStore.defaultLab} 周次 ${i+1} 周${weekday+1} 第${period*2+1}节 已被预约`)
+            alert(`错误：${bookingStore.defaultLab} 第${i+1}周 星期${"一二三四五六日"[weekday]} 第${period*2+1}-${period*2+2}节 已被预约`)
             return false
           }
           bookingStore.weeks.push(i)
@@ -73,7 +75,7 @@ function confirm() {
       case "单周":
         for (let i = startWeek + startWeek % 2; i <= endWeek; i += 2) {
           if (scheduleStore.isBooked(bookingStore.defaultLab, i, weekday, period).value) {
-            alert(`${bookingStore.defaultLab} 周次 ${i+1} 周${weekday+1} 第${period*2+1}节 已被预约`)
+            alert(`错误：${bookingStore.defaultLab} 第${i+1}周 星期${"一二三四五六日"[weekday]} 第${period*2+1}-${period*2+2}节 已被预约`)
             return false
           }
           bookingStore.weeks.push(i)
@@ -82,13 +84,18 @@ function confirm() {
       case "双周":
         for (let i = startWeek + 1 - startWeek % 2; i <= endWeek; i += 2) {
           if (scheduleStore.isBooked(bookingStore.defaultLab, i, weekday, period).value) {
-            alert(`${bookingStore.defaultLab} 周次 ${i+1} 周${weekday+1} 第${period*2+1}节 已被预约`)
+            alert(`错误：${bookingStore.defaultLab} 第${i+1}周 星期${"一二三四五六日"[weekday]} 第${period*2+1}-${period*2+2}节 已被预约`)
             return false
           }
           bookingStore.weeks.push(i)
         }
         break
     }
+  }
+
+  if(bookingStore.weeks.length + scheduleStore.calculateCourseHours(courseId) > courseStore.findCourseById(courseId).creditHour){
+    alert('错误：预约后，学时将超出课程学时。您可以在“课程管理”中修改学时。')
+    return false
   }
 
   for (let week of bookingStore.weeks) {

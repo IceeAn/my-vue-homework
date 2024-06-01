@@ -48,7 +48,7 @@ const deleteSlectedLessons = () => {
 }
 
 const selectAll = computed({
-  get: () => selectedLessons.value.length === filteredLessons.value.length,
+  get: () => selectedLessons.value.length === filteredLessons.value.length && filteredLessons.value.length > 0,
   set: (value) => {
     if (value) {
       selectedLessons.value.splice(0, selectedLessons.value.length, ...filteredLessons.value)
@@ -66,7 +66,7 @@ const filteredLessons = computed(() => {
       (filter.lab === "-1" || lesson.time.lab === filter.lab) &&
       (lesson.time.week >= filter.startWeek - 1 && lesson.time.week <= filter.endWeek - 1) &&
       (filter.day === -1 || lesson.time.day === filter.day) &&
-      (lesson.time.period >= filter.startPeriod - 1 && lesson.time.period <= filter.endPeriod - 1) &&
+      (lesson.time.period >= (filter.startPeriod - 1) / 2 && lesson.time.period <= filter.endPeriod / 2 - 1) &&
       (filter.singleWeek === -1 || lesson.time.week % 2 - filter.singleWeek) &&
       1
   )

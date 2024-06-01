@@ -7,6 +7,16 @@ const courseStore = useCourseStore();
 const { operatingCourse } = storeToRefs(courseStore);
 
 function confirm(){
+  if(operatingCourse.value.name===""){
+    alert("课程名称不能为空")
+    return false
+  }else if(operatingCourse.value.creditHour===undefined ||
+      operatingCourse.value.creditHour.toString()==="" ||
+      operatingCourse.value.creditHour===0
+  ){
+    alert("学时不能为空或为0")
+    return false
+  }
   courseStore.updateCourse(operatingCourse.value)
   return true
 }

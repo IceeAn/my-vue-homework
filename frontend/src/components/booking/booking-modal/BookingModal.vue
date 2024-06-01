@@ -26,7 +26,7 @@ const getActiveTabId = (): string | null => {
 function confirm() {
   const courseId = bookingStore.courseId
   if (courseId === '-1') {
-    console.log('未选择课程')
+    alert('未选择课程')
     return false
   }
   const purpose = bookingStore.purpose
@@ -34,25 +34,24 @@ function confirm() {
   const period = (bookingStore.period.startPeriod - 1) / 2
   const activeTabId = getActiveTabId()
   if (activeTabId === 'booking-form-1') {
-    console.log(bookingStore.defaultWeek)
     bookingStore.weeks.splice(0, bookingStore.weeks.length)
     bookingStore.weeks.push(bookingStore.defaultWeek)
   }
   if (activeTabId === 'booking-form-3') {
     if (bookingStore.weekRange.start === null || bookingStore.weekRange.end === null) {
-      console.log('未选择周次区间')
+      alert('未选择周次区间')
       return false
     }
     if (bookingStore.weekRange.start > bookingStore.weekRange.end) {
-      console.log('周次区间选择错误：开始周次不应大于结束周次')
+      alert('周次区间选择错误：开始周次不应大于结束周次')
       return false
     }
     if (bookingStore.weekRange.start < 1 || bookingStore.weekRange.end > 18) {
-      console.log('周次区间选择错误：周次需在1-18之间')
+      alert('周次区间选择错误：周次需在1-18之间')
       return false
     }
     if (bookingStore.weekRange.start % 1 || bookingStore.weekRange.end % 1) {
-      console.log('周次区间选择错误：周次须为整数')
+      alert('周次区间选择错误：周次须为整数')
       return false
     }
     const startWeek = bookingStore.weekRange.start - 1
@@ -65,36 +64,33 @@ function confirm() {
       case "全部周次":
         for (let i = startWeek; i <= endWeek; i++) {
           if (scheduleStore.isBooked(bookingStore.defaultLab, i, weekday, period).value) {
-            console.log(`实验室${bookingStore.defaultLab} 周次 ${i} 周${weekday} 第${period} 已被预约`)
+            alert(`${bookingStore.defaultLab} 周次 ${i+1} 周${weekday+1} 第${period*2+1}节 已被预约`)
             return false
           }
           bookingStore.weeks.push(i)
-          console.log(`实验室${bookingStore.defaultLab} 周次 ${i} 周${weekday} 第${period} 可预约`)
         }
         break
       case "单周":
         for (let i = startWeek + startWeek % 2; i <= endWeek; i += 2) {
           if (scheduleStore.isBooked(bookingStore.defaultLab, i, weekday, period).value) {
-            console.log(`周次 ${i} 周${weekday} 第${period} 已被预约`)
+            alert(`${bookingStore.defaultLab} 周次 ${i+1} 周${weekday+1} 第${period*2+1}节 已被预约`)
             return false
           }
           bookingStore.weeks.push(i)
-          console.log(`实验室${bookingStore.defaultLab} 周次 ${i} 周${weekday} 第${period} 可预约`)
         }
         break
       case "双周":
         for (let i = startWeek + 1 - startWeek % 2; i <= endWeek; i += 2) {
           if (scheduleStore.isBooked(bookingStore.defaultLab, i, weekday, period).value) {
-            console.log(`周次 ${i} 周${weekday} 第${period} 已被预约`)
+            alert(`${bookingStore.defaultLab} 周次 ${i+1} 周${weekday+1} 第${period*2+1}节 已被预约`)
             return false
           }
           bookingStore.weeks.push(i)
-          console.log(`实验室${bookingStore.defaultLab} 周次 ${i} 周${weekday} 第${period} 可预约`)
         }
         break
     }
   }
-  console.log(bookingStore.weeks)
+
   for (let week of bookingStore.weeks) {
     scheduleStore.updateLesson(
         bookingStore.defaultLab,
@@ -108,6 +104,7 @@ function confirm() {
         }
     )
   }
+  console.log(JSON.stringify(scheduleStore.schedule))
   return true
 }
 

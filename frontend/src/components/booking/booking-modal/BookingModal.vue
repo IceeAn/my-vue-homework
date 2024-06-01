@@ -93,7 +93,7 @@ function confirm() {
     }
   }
 
-  if(bookingStore.weeks.length + scheduleStore.calculateCourseHours(courseId) > courseStore.findCourseById(courseId).creditHour){
+  if(bookingStore.weeks.length + scheduleStore.calculateCourseHours(courseId).value > (courseStore.findCourseById(courseId)?.creditHour ?? 0)){
     alert('错误：预约后，学时将超出课程学时。您可以在“课程管理”中修改学时。')
     return false
   }

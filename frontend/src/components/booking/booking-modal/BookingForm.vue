@@ -5,6 +5,8 @@ import { useScheduleStore } from "@/stores/scheduleStore";
 import { storeToRefs } from "pinia";
 import { useBookingStore } from "@/stores/bookingStore";
 import { useLabStore } from "@/stores/LabStore";
+import { Tooltip } from "bootstrap";
+import { onMounted } from "vue";
 
 const scheduleStore = useScheduleStore()
 const { schedule } = storeToRefs(scheduleStore)
@@ -22,6 +24,11 @@ function isWeekBooked(i: number, j: number) {
   return scheduleStore.isBooked(lab.value, week, weekday, start)
 }
 
+onMounted(()=>{
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl))
+  console.log(tooltipList)
+})
 </script>
 
 <template>
@@ -101,7 +108,11 @@ function isWeekBooked(i: number, j: number) {
               </div>
               <div class="col col-7">
                 <div class="input-group mb-3">
-                  <span class="input-group-text">调剂&nbsp;<i class="bi bi-question-circle"></i></span>
+                  <span class="input-group-text">调剂&nbsp;
+                    <i class="bi bi-question-circle"
+                       data-bs-toggle="tooltip"
+                       data-bs-html="true"
+                       data-bs-title="<span class='bg-danger'>（暂未实现::选择无效）</span><br>保持时间不变，自动为您选择可选的实验室。<br><br>整体调剂：让您的课程整体调整到另一实验室。没有实验室可以满足则报错；<br>分节调剂：尽量让实验保持在您选择的实验室。若您选择的某些时段被占据，则自动调整到其他实验室。"></i></span>
                   <select v-model="bookingStore.allowAdjust" class="form-select">
                     <option selected>不允许</option>
                     <option>整体调剂</option>

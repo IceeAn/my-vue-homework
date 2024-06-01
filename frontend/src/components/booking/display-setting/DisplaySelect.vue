@@ -12,7 +12,7 @@
 
       <ul class="dropdown-menu">
         <li >
-          <a class="dropdown-item"> etst </a>
+          <a class="dropdown-item"> 暂无设置 </a>
         </li>
       </ul>
     </div>

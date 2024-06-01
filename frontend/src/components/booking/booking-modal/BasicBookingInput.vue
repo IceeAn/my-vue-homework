@@ -11,7 +11,7 @@ const { courseId, purpose } = storeToRefs(useBookingStore())
 </script>
 
 <template>
-  <div class="row row-cols-2">
+  <div class="row row-cols-1 row-cols-md-2">
     <div class="col">
       <select class="form-select mb-3" v-model="courseId">
         <option selected value="-1">选择课程名称</option>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 
+import HelpMain from "@/components/help/HelpMain.vue";
 </script>
 
 <template>
-<div class="text-center">暂无内容</div>
+  <HelpMain/>
 </template>
 
 <style scoped lang="sass">

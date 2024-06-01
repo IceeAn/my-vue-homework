@@ -105,8 +105,8 @@ watch(filter, (newFilter) => {
       <div class="col col-12 mt-3"></div>
       <div class="col col-6 col-lg-3 mb-3">
         <div class="input-group">
-          <label class="input-group-text" for="inputGroupSelect01">课程</label>
-          <select class="form-select" v-model="filter.course">
+          <label class="input-group-text" for="filter-input-course">课程</label>
+          <select class="form-select" id="filter-input-course" v-model="filter.course">
             <option selected value="-1">不限</option>
             <option v-for="courseForSelect in myCourses" :key="courseForSelect.id"
                     :value="courseForSelect.id">
@@ -118,8 +118,8 @@ watch(filter, (newFilter) => {
 
       <div class="col col-6 col-lg-3 mb-3">
         <div class="input-group">
-          <label class="input-group-text" for="inputGroupSelect01">实验室</label>
-          <select class="form-select" v-model="filter.lab">
+          <label class="input-group-text" for="filter-input-lab">实验室</label>
+          <select class="form-select" id="filter-input-lab" v-model="filter.lab">
             <option selected value="-1">不限</option>
             <option v-for="lab in 'ABCD'" :key="lab">
               {{ "实验室" + lab }}
@@ -130,8 +130,8 @@ watch(filter, (newFilter) => {
 
       <div class="col col-6 col-lg-3 mb-3">
         <div class="input-group">
-          <label class="input-group-text" for="inputGroupSelect01">单双周</label>
-          <select class="form-select" v-model="filter.singleWeek">
+          <label class="input-group-text" for="filter-input-single-week">单双周</label>
+          <select class="form-select" id="filter-input-single-week" v-model="filter.singleWeek">
             <option :value="-1" selected>不限</option>
             <option :value="1">仅单周</option>
             <option :value="0">仅双周</option>
@@ -141,8 +141,8 @@ watch(filter, (newFilter) => {
 
       <div class="col col-6 col-lg-3 mb-3">
         <div class="input-group">
-          <label class="input-group-text" for="inputGroupSelect01">星期</label>
-          <select class="form-select" v-model="filter.day">
+          <label class="input-group-text" for="filter-input-lab-weekday">星期</label>
+          <select class="form-select" id="filter-input-weekday" v-model="filter.day">
             <option :value="-1" selected>不限</option>
             <option v-for="day in 7" :key="day" :value="day-1">
               {{ "一二三四五六日"[day - 1] }}
@@ -153,41 +153,41 @@ watch(filter, (newFilter) => {
 
       <div class="col col-12 col-md-6 mb-3 mb-md-0">
         <div class="input-group">
-          <label class="input-group-text" for="inputGroupSelect01">从第</label>
-          <select class="form-select" v-model="startPeriod">
+          <label class="input-group-text" for="filter-input-lab-start-period">从第</label>
+          <select class="form-select" id="filter-input-lab-start-period" v-model="startPeriod">
             <option v-for="period in 4" :key="period" :value="period*2-1">
               {{ period * 2 - 1 }}
             </option>
           </select>
-          <label class="input-group-text" for="inputGroupSelect01">节</label>
-          <label class="input-group-text" for="inputGroupSelect01">到第</label>
-          <select class="form-select" v-model="filter.endPeriod">
+          <label class="input-group-text" for="filter-input-lab-start-period">节</label>
+          <label class="input-group-text" for="filter-input-lab-end-period">到第</label>
+          <select class="form-select" id="filter-input-lab-end-period" v-model="filter.endPeriod">
             <option v-for="period in 4 - (filter.startPeriod-1)/2" :key="period*2 + (filter.startPeriod - 1)"
                     :value="period*2 + (filter.startPeriod - 1)">
               {{ period * 2 + (filter.startPeriod - 1) }}
             </option>
           </select>
-          <label class="input-group-text" for="inputGroupSelect01">节</label>
+          <label class="input-group-text" for="filter-input-lab-end-period">节</label>
         </div>
       </div>
 
       <div class="col col-12 col-md-6 mb-0">
         <div class="input-group">
-          <label class="input-group-text" for="inputGroupSelect01">从第</label>
-          <select class="form-select" v-model="startWeek">
+          <label class="input-group-text" for="filter-input-lab-start-week">从第</label>
+          <select class="form-select" id="filter-input-lab-start-week" v-model="startWeek">
             <option v-for="week in 18" :key="week" :value="week">
               {{ week }}
             </option>
           </select>
-          <label class="input-group-text" for="inputGroupSelect01">周</label>
-          <label class="input-group-text" for="inputGroupSelect01">到第</label>
-          <select class="form-select" v-model="filter.endWeek">
+          <label class="input-group-text" for="filter-input-lab-start-week">周</label>
+          <label class="input-group-text" for="filter-input-lab-end-week">到第</label>
+          <select class="form-select" id="filter-input-lab-end-week" v-model="filter.endWeek">
             <option v-for="week in 18 - (filter.startWeek - 1)" :key="week + (filter.startWeek - 1)"
                     :value="week + (filter.startWeek - 1)">
               {{ week + (filter.startWeek - 1) }}
             </option>
           </select>
-          <label class="input-group-text" for="inputGroupSelect01">周</label>
+          <label class="input-group-text" for="filter-input-lab-end-week">周</label>
         </div>
       </div>
     </div>

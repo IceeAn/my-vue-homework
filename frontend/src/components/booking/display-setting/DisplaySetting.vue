@@ -5,7 +5,7 @@ import DisplaySelect from "@/components/booking/display-setting/DisplaySelect.vu
 </script>
 
 <template>
-  <p>周总览/实验室总览/详细视图</p>
+<!--  <p>TODO:周总览/实验室总览/详细视图</p>-->
   <div class="row mt-2 px-0 px-md-2">
     <div class="col col-9 col-md-7">
       <div class="row">

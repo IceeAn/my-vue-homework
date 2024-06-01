@@ -15,7 +15,6 @@ function setOperatingCourse(courseId: string) {
 </script>
 
 <template>
-  TODO:删除同时删除预约<br>
   <div class="row row-cols-1 col-12 col-md-10 col-lg-8 mx-auto">
     <div class="col mb-3 alert alert-info text-center">
       如果需要预约超出预定学时的课，可在此修改课程学时，预定完成再修改回去。<br>

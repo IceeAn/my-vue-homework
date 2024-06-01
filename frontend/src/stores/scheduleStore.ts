@@ -795,5 +795,19 @@ export const useScheduleStore = defineStore('schedule', () => {
         schedule.find(item => item.lab === lab)!.schedule[week][day][period] = null
     }
 
-    return { schedule, calculateCourseHours, myLessons, isBooked, updateLesson, deleteLesson }
+    function deleteCourseLesson(courseId: string) {
+        schedule.forEach(lab => {
+            lab.schedule.forEach(week => {
+                week.forEach(day => {
+                    day.forEach((lesson, index) => {
+                        if (lesson && lesson.course === courseId) {
+                            day[index] = null
+                        }
+                    })
+                })
+            })
+        })
+    }
+
+    return { schedule, calculateCourseHours, myLessons, isBooked, updateLesson, deleteLesson, deleteCourseLesson }
 })

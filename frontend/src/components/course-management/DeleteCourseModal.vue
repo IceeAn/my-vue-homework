@@ -2,12 +2,16 @@
 import ModalFrame from "@/components/common/ModalFrame.vue";
 import { useCourseStore } from "@/stores/courseStore";
 import { storeToRefs } from "pinia";
+import { useScheduleStore } from "@/stores/scheduleStore";
 
 const courseStore = useCourseStore();
 const { operatingCourse } = storeToRefs(courseStore);
 
+const scheduleStore = useScheduleStore();
+
 function confirm(){
   courseStore.deleteCourse(operatingCourse.value.id);
+  scheduleStore.deleteCourseLesson(operatingCourse.value.id);
   return true
 }
 </script>
